@@ -1,0 +1,24 @@
+doctype html
+html
+	head
+		meta(charset="utf-8")
+		title 中国婚博会
+		link(rel="stylesheet", href="/static/css/common.css")
+		
+	body
+		h2 Hello,World
+		
+		#header
+			span header
+		ul.list
+			- foreach ($this->v['list'] as $list):
+				li
+					a(href!=$list['url'])!= $list['name']
+			- endforeach
+			
+		footer
+			| &copy; lessp.cc
+			br/
+			em
+				| 中国renf
+				= date('Y/m/d H:i:s')

@@ -1,0 +1,6 @@
+build/
+vendor/
+log/
+tmp/
+node_modules/
+conf/
