@@ -1,24 +1,71 @@
-doctype html
-html
-	head
-		meta(charset="utf-8")
-		title 中国婚博会
-		link(rel="stylesheet", href="/static/css/common.css")
-		
-	body
-		h2 Hello,World
-		
-		#header
-			span header
-		ul.list
-			- foreach ($this->v['list'] as $list):
-				li
-					a(href!=$list['url'])!= $list['name']
-			- endforeach
-			
-		footer
-			| &copy; lessp.cc
-			br/
-			em
-				| 中国renf
-				= date('Y/m/d H:i:s')
+- $this->setLayout('layout.phtml');
+
+// header begin
+style.
+	#header{background:#e02020;height:1.4rem;position:relative;color:#fff;}
+	#header .city-selector{color:#FFF;font-size:.6rem;line-height:1.4rem;left:.5rem;top:0;text-decoration:none;position:absolute;}
+	#header h1{text-align:center;font-weight:normal;font-size:.7rem;margin:0;line-height:1.4rem;}
+	#header .hf-grid{position:absolute;right:0;top:0;line-height:1.4rem;width:2.2rem;}
+	#header .hf-grid a{font-size:.8rem;text-align:right;}
+	#city-list{display:none;}
+	
+#header
+	a.city-selector(href="#city-list", rel="modal:open")
+		!=$this->v['city']['name']
+		i.fa(class="fa-chevron-down")
+	h1 中国婚博会
+	ul.hf-grid(columns="2")
+		li
+			a.fa(class="fa-search", title="搜索")
+		li
+			a.fa(class="fa-user", title="帐号")
+	#city-list
+		ul.option-list
+			li
+				- foreach ($this->v['cities'] as $city):
+					a(href!= sprintf('http://%s.jiehun.com.cn/m/', $city['mark']) )!= $city['name']
+				- endforeach
+				
+// header end
+
+// ads begin			
+style.
+	#swiper-1 .swiper-slide {
+		height: 5rem;
+		background: #ccc;
+		text-align: center;
+		line-height: 5rem;
+	}
+	#swiper-1 .swiper-slide a img{width:16rem;height:5rem;display:block;}
+	
+#swiper-1.swiper-container(data-options="{loop:true,autoplay:3000,lazyLoading:true}")
+	.swiper-wrapper
+		- foreach ($this->v['ads'] as $ad):
+			.swiper-slide
+				a(href!= $ad['link'])
+					img.swiper-lazy(data-src!= $ad['src'], alt!= $ad['title'])
+				.swiper-lazy-preloader
+		- endforeach
+	#swiper-pagination-1.swiper-pagination
+// ads end
+	
+style.
+	#cate-nav{padding:.4rem 0 0;}
+	#cate-nav a {
+		display: block;
+		height: 3.8rem;
+		text-align: center;
+		background-repeat: no-repeat;
+		background-position: center top;
+		background-size:60%;
+		line-height: 6rem;
+		font-size:.6rem;
+		text-decoration: none;
+	}
+
+section.section
+	ul#cate-nav.hf-grid(columns="4")
+		- foreach ($this->v['cates'] as $cate):
+			li
+				a(href!=$cate['link'], data-original!= $cate['logo'])!= $cate['name']
+		- endforeach

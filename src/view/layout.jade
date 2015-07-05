@@ -1,0 +1,22 @@
+doctype html
+html.hf-mobile(lang="zh-CN")
+	head
+		meta(charset="utf-8")
+		meta(name="viewport", content="initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no")
+		title Next Generation Happy Framework
+		
+		link(rel="stylesheet", href="/static/css/ext/normalize.min.css")
+		link(rel="stylesheet", href="/static/css/ext/swiper.min.css")
+		link(rel="stylesheet", href="/static/css/nghf.min.css")
+		
+		script(src="/static/js/ext/jquery/jquery.min.js")
+		script(src="/static/js/ext/jquery/jquery.swiper.min.js")
+		script(src="/static/js/ext/jquery/jquery.lazyload.min.js")
+		script(src="/static/js/nghf.min.js")
+		
+		// [if lt IE 9]
+		script(src="/static/js/ext/html5.min.js")
+		// [endif]
+		
+	body
+		!= $this->getBlock('__BODY__')
