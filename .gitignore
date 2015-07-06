@@ -5,3 +5,5 @@ tmp/
 node_modules/
 conf/
 bower_components/
+*.log
+*.lock
